@@ -10,13 +10,15 @@
 return [
     'event' => [
         'eventList' => [
-            /*
+            
             # 加入购物车前
             'event_add_to_cart_before' => [
-                ['appfront\event\CartTest1','beforeAdd1'],
-                ['appfront\event\CartTest2','beforeAdd2'],
+                // ['appfront\local\local_events\CartTest1','beforeAdd1'],
+
+                // ['appfront\event\CartTest1','beforeAdd1'],
+                // ['appfront\event\CartTest2','beforeAdd2'],
             ],
-            */
+            
         ],
 
     ],

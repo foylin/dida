@@ -1,0 +1,31 @@
+.myShare_nohove {
+    float: left;
+    font-size: 12px;
+    margin: 15px 0 0 20px;
+    padding: 0 0 0 20px;
+}
+
+.myShare_nohove i{
+	background: rgba(0, 0, 0, 0) url("../images/tag.png") no-repeat scroll -120px -48px;
+	
+    display: inline-block;
+    font-size: 0;
+    height: 27px;
+    margin-right: 5px;
+    vertical-align: -10px;
+    width: 27px;
+	
+}
+.myShare_nohove:hover i{
+	 background-position: -152px -48px;
+}
+.myShare_nohove:hover a{
+	color:#da6667;
+}
+
+.myShare_nohove.act i{
+	 background-position: -152px -48px;
+}
+.myShare_nohove.act a{
+	color:#da6667;
+}

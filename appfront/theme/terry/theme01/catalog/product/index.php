@@ -64,9 +64,10 @@
 							<!-- 分享 -->
 							<div class="myShare_nohove" id="myShare">
 								<i></i>
-								<a href="javascript:void(0)" product_id="<?= $_id?>" data-shareurl="<?= Yii::$service->url->getUrl('catalog/favoriteproduct/add', ['product_id'=>$_id, 'uid' => $_uid]); ?>" class="shareProduct" id="divShareProduct" rel="nofollow" >
+								<a href="javascript:void(0)" product_id="<?= $_id?>" data-shareurl="<?= Yii::$service->url->getUrl('catalog/product/index', ['id'=>$_id]); ?>" class="shareProduct" id="divShareProduct" rel="nofollow" >
 									<?= Yii::$service->page->translate->__('share'); ?>
-								</a>				
+								</a>		
+								<input type="hidden" value="<?= $share_uid?>">		
 							</div>
 							<div class="clear"></div>
 						</div>
@@ -198,6 +199,7 @@
 				$data['custom_option'] 	= custom_option_json;
 				$data['product_id'] 	= "<?= $_id ?>";
 				$data['qty'] 			= qty;
+				$data['share_uid']		= "<?= $share_uid?>";
 				if (csrfName && csrfVal) {
 					$data[csrfName] 		= csrfVal;
 				}
