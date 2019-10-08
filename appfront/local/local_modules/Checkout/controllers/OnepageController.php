@@ -44,9 +44,9 @@ class OnepageController extends AppfrontController
             $status = $this->getBlock('placeorder')->getLastData();
             if (!$status) {
                 var_dump(Yii::$service->helper->errors->get());
-            //     //exit;
+                exit;
             }
-            exit;
+            // exit;
         }
 
         $data = $this->getBlock()->getLastData();

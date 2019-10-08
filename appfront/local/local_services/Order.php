@@ -581,7 +581,7 @@ class Order extends \fecshop\services\Service
         $country        = $address['country'];
         $state          = $address['state'];
         $cartInfo       = Yii::$service->cart->getCartInfo(true, $shipping_method, $country, $state);
-        
+        // var_dump($cartInfo);
         // 检查cartInfo中是否存在产品
         if (!is_array($cartInfo) && empty($cartInfo)) {
             Yii::$service->helper->errors->add('current cart product is empty');

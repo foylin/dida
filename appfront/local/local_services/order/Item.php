@@ -283,6 +283,7 @@ class Item extends Service
          * 由于是通过session查订单的方式，而不是新建，paypal报错可能多次下单（更新方式），
          * 因此在添加订单产品的时候先进行一次删除产品操作。
          */
+        // var_dump($items);
         $this->_itemModel->deleteAll(['order_id' => $order_id]);
         if (is_array($items) && !empty($items) && $order_id && $store) {
             foreach ($items as $item) {
@@ -304,7 +305,7 @@ class Item extends Service
                 $myOrderItem['row_total'] = $item['product_row_price'];
                 $myOrderItem['base_row_total'] = $item['base_product_row_price'];
                 $myOrderItem['redirect_url'] = $item['product_url'];
-                $myOrderItem['share_uid'] = $item['sharuid'];
+                $myOrderItem['share_uid'] = $item['share_uid'];
                 if (!$myOrderItem->validate()) {
                     $errors = $myOrderItem->errors;
                     Yii::$service->helper->errors->addByModelErrors($errors);
@@ -312,6 +313,8 @@ class Item extends Service
                     return false;
                 }
                 $saveStatus = $myOrderItem->save();
+
+                
                 // 如果保存失败，直接返回。
                 if (!$saveStatus) {
                     return $saveStatus;

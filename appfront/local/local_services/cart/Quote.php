@@ -394,7 +394,7 @@ class Quote extends Service
             }
             $coupon_code = $cart['coupon_code'];
             $cart_product_info = Yii::$service->cart->quoteItem->getCartProductInfo($activeProduct);
-            //var_dump($cart_product_info);
+            // var_dump($cart_product_info);exit;
             if (is_array($cart_product_info)) {
                 $product_weight = $cart_product_info['product_weight'];
                 $product_volume_weight = $cart_product_info['product_volume_weight'];

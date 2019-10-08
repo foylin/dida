@@ -41,15 +41,19 @@ class Share extends Service
         }
 
         foreach ($items as $item) {
-            $commission = $item['row_total'];
+            $percent = 0.10;
+
+            $commission = $item['product_row_price'] * $percent;
 
             $OrderShare = new $this->_itemModelName();
             $OrderShare['order_id'] = $order_id;
             $OrderShare['customer_id'] = Yii::$app->user->identity->id;
             $OrderShare['share_uid'] = $item['share_uid'];
-            $OrderShare['percent'] = '15';
+            $OrderShare['percent'] = $percent;
             $OrderShare['commission'] = $commission;
             $OrderShare['status'] = 0;
+
+            // var_dump($item);
             $saveStatus = $OrderShare->save();
             // 如果保存失败，直接返回。
             if (!$saveStatus) {

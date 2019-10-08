@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    new ClipboardJS('.btn-shareurl');
+
     $('#myShare').click(function () {
         
         jQuery.ajax({
@@ -18,12 +20,14 @@ $(document).ready(function () {
                 } else {
                     
                     var shareurl = $('#divShareProduct').data('shareurl') + '&share_uid=' + data.uid;
-                    var html = '<div>';
-                        html += '<div><input name="" value="'+shareurl+'" /></div>';
+                    var html = '<div class="share-main">';
+                        html += '<div class="share-input-group"><input id="input-shareurl" class="" name="" value="'+shareurl+'" />';
+                        html += '<span class="share-input-group-button"><button class="btn-shareurl" data-clipboard-target="#input-shareurl">copy</button></span></div>';
+                        html += '<p>Share this link. If your friends shop through it, you will get at least <span>10%</span> commission.</p>'
                         html += '</div>';
                     layer.open({
                         type: 1, 
-                        area: ['500px', '300px'],
+                        area: ['500px', '200px'],
                         content: html 
                     });
                 }   

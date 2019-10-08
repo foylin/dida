@@ -11,9 +11,9 @@ return [
 
         // 子服务
         'childService' => [
-            // 'quote' => [
-            //     'class' => 'fecshop\services\cart\Quote',
-            // ],
+            'quote' => [
+                'class' => 'appfront\local\local_services\cart\Quote',
+            ],
             'quoteItem' => [
                 'class' => 'appfront\local\local_services\cart\QuoteItem',
             ],

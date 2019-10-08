@@ -45,6 +45,15 @@ return [
                            'js/layui/layui.all.js'
                         ],
                     ],
+                    [
+                        'options' => [
+                            'position' =>  'POS_END',
+                        //	'condition'=> 'lt IE 9',
+                        ],
+                        'js'	=>[
+                           'js/clipboard.min.js'
+                        ],
+                    ],
                     
                     # js config 2
                     [
