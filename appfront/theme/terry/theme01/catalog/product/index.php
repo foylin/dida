@@ -65,7 +65,7 @@
 							<div class="myShare_nohove" id="myShare">
 								<i></i>
 								<a href="javascript:void(0)" product_id="<?= $_id?>" data-shareurl="<?= Yii::$service->url->getUrl('catalog/product/index', ['id'=>$_id]); ?>" class="shareProduct" id="divShareProduct" rel="nofollow" >
-									<?= Yii::$service->page->translate->__('share'); ?> 123
+									<?= Yii::$service->page->translate->__('share'); ?>
 								</a>		
 								<input type="hidden" value="<?= $share_uid?>">		
 							</div>
