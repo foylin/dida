@@ -976,6 +976,7 @@ class Order extends \fecshop\services\Service
     // 用户确认收货
     public function delivery($incrementId, $customerId)
     {
+        
         $updateComules = $this->_orderModel->updateAll(
             [
                 'order_status' => $this->status_completed,
@@ -986,9 +987,14 @@ class Order extends \fecshop\services\Service
                 'customer_id' => $customerId,
             ]
         );
+
+        
+
         if (empty($updateComules)) {
             Yii::$service->helper->errors->add('customer delivery order fail');
             return false;
+        }else{
+            
         }
         return true;
         

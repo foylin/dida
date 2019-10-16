@@ -7,7 +7,10 @@
  * @license http://www.fecshop.com/license/
  */
 
-namespace fecshop\app\appfront\modules\Customer\controllers;
+// namespace fecshop\app\appfront\modules\Customer\controllers;
+
+namespace appfront\local\local_modules\Customer\controllers;
+
 
 use fecshop\app\appfront\modules\AppfrontController;
 use Yii;
@@ -19,6 +22,9 @@ use Yii;
 class OrderController extends AppfrontController
 {
     //protected $_registerSuccessRedirectUrlKey = 'customer/account';
+
+
+    public $blockNamespace = '';
 
     public function init()
     {
@@ -52,5 +58,21 @@ class OrderController extends AppfrontController
         }
         return $this->getBlock()->getLastData();
         //return $this->render($this->action->id,$data);
+    }
+
+    /**
+     * 确认收货
+     */
+    public function actionConfim(){
+        
+        if (Yii::$app->user->isGuest) {
+            return Yii::$service->url->redirectByUrlKey('customer/account/login');
+        }
+
+        $this->blockNamespace = 'appfront\\local\\local_modules\\Customer\\block';
+
+        $data = $this->getBlock()->getLastData();
+
+        // return $this->render($this->action->id, $data);
     }
 }

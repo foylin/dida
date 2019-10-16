@@ -14,7 +14,8 @@ return [
     'customer' => [
         // 'class' => '\appfront\local\local_modules\Customer\Module',
         'controllerMap' => [
-            'ajax' => 'appfront\local\local_modules\Customer\controllers\AjaxController',             
+            'ajax' => 'appfront\local\local_modules\Customer\controllers\AjaxController',
+            'order' => 'appfront\local\local_modules\Customer\controllers\OrderController',             
          ],
 
         
