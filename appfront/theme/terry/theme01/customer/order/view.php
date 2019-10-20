@@ -17,9 +17,13 @@ use fecshop\app\appfront\helper\Format;
 			<div style="margin:19px 0 0">
 				<div class="my_account_order">
 					<div class="page-title title-buttons">
-						<h1><?= Yii::$service->page->translate->__('Order #');?><?=  $increment_id ?>				<?= Yii::$service->page->translate->__($order_status);?>				</h1>
+						<h1>
+							<?= Yii::$service->page->translate->__('Order #');?><?=  $increment_id ?>				
+							<?= Yii::$service->page->translate->__($order_status);?>				
+						</h1>
 					</div>
 					<p class="order-date"><?=  date('Y-m-d H:i:s',$created_at); ?></p>
+					<input type="hidden" id="order_id" value="<?= $order_id?>">
 					<div class="col2-set order-info-box">
 						<div class="col-1">
 							<div class="box">
@@ -47,7 +51,8 @@ use fecshop\app\appfront\helper\Format;
 								<div class="box-content">
 								<?=  $shipping_method ?>             
 								</div>
-							</div>				</div>
+							</div>				
+						</div>
 						<div class="col-2">
 							<div class="box box-payment">
 								<div class="box-title">
@@ -58,6 +63,22 @@ use fecshop\app\appfront\helper\Format;
 								</div>
 							</div>				
                         </div>
+						<?php if($order_status == 'dispatched'):  ?>
+						<div class="col-2">
+							<div class="box box-payment">
+								<div class="box-title">
+									<h2><?= Yii::$service->page->translate->__('Operation');?></h2>
+								</div>
+								<div class="box-content">
+									<!-- <p><strong></strong></p> -->
+									<button type="button" id="completed" class="layui-btn layui-btn-fluid">
+										<?= Yii::$service->page->translate->__('Completed') ?>
+									</button>
+
+								</div>
+							</div>				
+                        </div>
+						<?php endif;  ?>
 					</div>
 					
 					<div class="order-items order-details">

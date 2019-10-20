@@ -73,14 +73,14 @@ class Share extends Service
     }
 
     /**
-     * 收货确认 - 派发分享所得金额，并记录
+     * 收货确认 - 派发推广所得金额，并记录
      *
      * @param [type] $order_id
      * @return void
      */
     protected function actionConfim($incrementId, $customerId){
-        // echo $customerId;
-
+        
+        // 查询是否有推广任务订单
         $items = $this->_itemModel->find()->asArray()->where([
             'increment_id' => $incrementId,
             'customer_id' => $customerId
@@ -109,13 +109,17 @@ class Share extends Service
                 $recordsItem['from_type'] = 1;
                 $recordsItem['data_id'] = $item['order_id'];
                 $recordsItem['text'] = self::ShareAddText;
+
+                // 添加资金流水记录 && 更新用户账户
                 Yii::$service->customer->accountrecords->addRecords($recordsItem);
             
             }
             
+        }else{
+            return true;
         }
         
-        print_r($item);exit;
+        // print_r($item);exit;
         
 
         

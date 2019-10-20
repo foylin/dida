@@ -26,6 +26,35 @@ class AccountRecords extends Service
     }
 
     /**
+     * @param $filter|array
+     * @return Array;
+     *  通过过滤条件，得到coupon的集合。
+     *  example filter:
+     *  [
+     *  'numPerPage' 	=> 20,
+     *  'pageNum'		=> 1,
+     *  'orderBy'	=> ['_id' => SORT_DESC, 'sku' => SORT_ASC ],
+     *  'where'			=> [
+     *      ['>','price',1],
+     *      ['<=','price',10]
+     * 		['sku' => 'uk10001'],
+     * 	],
+     * 	'asArray' => true,
+     *  ]
+     */
+    protected function actionColl($filter = '')
+    {
+        $query = $this->_itemModel->find();
+        $query = Yii::$service->helper->ar->getCollByFilter($query, $filter);
+        $coll = $query->all();
+        
+        return [
+            'coll' => $coll,
+            'count'=> $query->limit(null)->offset(null)->count(),
+        ];
+    }
+
+    /**
      * 新增 流水帐
      *
      * @param [type] $customer_id
@@ -38,7 +67,6 @@ class AccountRecords extends Service
      * @return void
      */
     protected function actionAddRecords($item){
-        print_r($item);
 
         $recordsItem = new $this->_itemModelName();
         $recordsItem['customer_id'] = $item['customer_id'];
@@ -54,11 +82,23 @@ class AccountRecords extends Service
         
         // 新增成功 更新账户金额 
         if($saveStatus){
-            Yii::$service->customer->account->UpdateAccount($item['customer_id'], 1, $item['number'], $item['sign']);
+            $result = Yii::$service->customer->account->UpdateAccount($item['customer_id'], 1, $item['number'], $item['sign']);
+            return $result;
+        }else{
+            return false;
         }
     }
 
-    
-
+    /**
+     * 获取处理中的提现记录
+     *
+     * @return void
+     */
+    public function getRecordsBywait($customer_id){
+        return $data = $this->_itemModel->find()->asArray()->where([
+            'customer_id' => $customer_id,
+            'status' => 0,
+        ])->all();
+    }
     
 }

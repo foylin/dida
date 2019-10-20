@@ -18,6 +18,9 @@ return [
             'account' => [
                 'class' => 'appfront\local\local_services\customer\Account',
             ],
+            'balancewithdraw' => [
+                'class' => 'appfront\local\local_services\customer\BalanceWithdraw',
+            ],
             
         ],
         /*

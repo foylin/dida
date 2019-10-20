@@ -17,7 +17,7 @@ use Yii;
  * @author Terry Zhao <2358269014@qq.com>
  * @since 1.0
  */
-class Confim
+class Completed
 {
     public function getLastData()
     {
@@ -28,10 +28,11 @@ class Confim
         if(!empty($order_info)){
             // print_r(123);
             $result = $this->getDelivery($order_info['increment_id'], $order_info['customer_id']);
-            print_r($result);
+            // print_r($result);
+            return $result;
         }
         
-        return $result;
+        return false;
     }
     
     // 面包屑导航
@@ -72,14 +73,28 @@ class Confim
             $identity = Yii::$app->user->identity;
             $customer_id = $identity->id;
             if ($customerId == $customer_id) {
-                // $result = Yii::$service->order->delivery($incrementId, $customerId);
-        
-                Yii::$service->order->share->Confim($incrementId, $customerId);
-                
-                
+                $innerTransaction = Yii::$app->db->beginTransaction();
+                try{
+                    $result = Yii::$service->order->delivery($incrementId, $customerId);
+                    
+                    if(!$result){
+                        
+                        $innerTransaction->rollBack();
+                    }else{
+                        // 推广订单 分派金额及记录
+                        Yii::$service->order->share->Confim($incrementId, $customerId);
 
-                return $result;
-                // return $order_info;
+                        $innerTransaction->commit();
+
+                        return $result;
+                    }
+
+                    
+                }catch (\Exception $e) {
+                    $innerTransaction->rollBack();
+                    return false;
+                }
+                
             }else{
                 return false;
             }

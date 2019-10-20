@@ -44,7 +44,7 @@ class LeftMenu
                 ];
             }
         }
-        //var_dump($leftMenuArr);
+        var_dump($leftMenuArr);
         return [
             'leftMenuArr' => $leftMenuArr,
         ];

@@ -993,8 +993,6 @@ class Order extends \fecshop\services\Service
         if (empty($updateComules)) {
             Yii::$service->helper->errors->add('customer delivery order fail');
             return false;
-        }else{
-            
         }
         return true;
         

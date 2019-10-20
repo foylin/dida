@@ -15,14 +15,53 @@ use Yii;
 
 class Account extends Service
 {
-    protected $_itemModelName = '\appfront\local\local_models\mysqldb\customer\Account';
+    protected $_AccountModelName = '\appfront\local\local_models\mysqldb\customer\Account';
 
-    protected $_itemModel;
+    protected $_AccountModel;
     
     public function init()
     {
         parent::init();
-        list($this->_itemModelName, $this->_itemModel) = \Yii::mapGet($this->_itemModelName);
+        list($this->_AccountModelName, $this->_AccountModel) = \Yii::mapGet($this->_AccountModelName);
+    }
+
+    /**
+     * 获取账户余额 积分
+     *
+     * @param [type] $customer_id
+     * @return void
+     */
+    public function getAccount($customer_id){
+        if ($customer_id) {
+            $one = $this->_AccountModel->findOne(['customer_id' => $customer_id]);
+            if ($one['customer_id']) {
+                return $one;
+            }
+        }
+    }
+
+    /**
+     * 最大可提现金额
+     *
+     * @param [type] $customer_id
+     * @return void
+     */
+    public function getMaxWithdraw($customer_id){
+        if($customer_id){
+            $myaccount = $this->getAccount($customer_id);
+            $myaccount_money = $myaccount['balance'];
+
+            $myaccount_records_wait = Yii::$service->customer->balancewithdraw->getRecordsBywait($customer_id);
+            $myaccount_records_wait_money = 0;
+            foreach ($myaccount_records_wait as $item) {
+                $myaccount_records_wait_money += $item['cash'];
+            }
+
+            return $myaccount_money - $myaccount_records_wait_money;
+            
+        }else{
+            return 0.00;
+        }
     }
 
     /**
@@ -35,9 +74,8 @@ class Account extends Service
      * @return void
      */
     protected function actionUpdateAccount($customer_id, $type, $number, $sign){
-        print_r($item);
 
-        $item = $this->_itemModel->find()->asArray()->where([
+        $item = $this->_AccountModel->find()->asArray()->where([
             'customer_id' => $customer_id
         ])->one();
         
@@ -50,7 +88,7 @@ class Account extends Service
                 $update_number = $item[$update_type] - $number;
             }
 
-            $updateComules = $this->_itemModel->updateAll(
+            $updateComules = $this->_AccountModel->updateAll(
                 [
                     $update_type => $update_number,
                 ],
@@ -59,23 +97,16 @@ class Account extends Service
                 ]
             );
 
+            return $updateComules;
+
         }else{
             $update_number = $number;
-            $accountItem = new $this->_itemModelName();
+            $accountItem = new $this->_AccountModelName();
             $accountItem['customer_id'] = $customer_id;
             $accountItem[$update_type] = $number;
-            $accountItem->save();
+            return $accountItem->save();
         }
 
-
-        
-        
-
-        
-
+        return false;
     }
-
-    
-
-    
 }
