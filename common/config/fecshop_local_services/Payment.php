@@ -32,14 +32,14 @@ return [
                     // 下面是沙盒地址，线上地址为：https://api-3t.paypal.com/nvp，
                     // 这个url的作用用于 Yii::$service->payment->paypal->PPHttpPost5 ，发起一些api请求
                     // 譬如获取token，获取paypal存储的address（购物车快捷支付），发起扣款请求
-                    //'nvp_url'  => 'https://api-3t.sandbox.paypal.com/nvp',
+                    'nvp_url'  => 'https://api-3t.sandbox.paypal.com/nvp',
                     // 下面是沙盒地址，线上地址为：https://www.paypal.com/cgi-bin/webscr
                     // 获取token后，通过这个url跳转到paypal的url地址，另外paypal的IPN消息的合法性认证，也是使用的这个url
                     // 也就是  Yii::$service->payment->paypal->getVerifyUrl()
-                    //'webscr_url'  => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
-                    //'account'  => 'zqy234api1-facilitator_api1.126.com',
-                    //'password' => 'HF4TNTTXUD6YQREH',
-                    //'signature'=> 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-ANB-xrkMmTHpTszFaUx2v4EHqknV',
+                    'webscr_url'  => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
+                    'account'  => 'zqy234api1-facilitator_api1.126.com',
+                    'password' => 'HF4TNTTXUD6YQREH',
+                    'signature'=> 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-ANB-xrkMmTHpTszFaUx2v4EHqknV',
                     'label'=> 'PayPal Express Payments',
                     // 跳转到paypal确认后，跳转到fecshop的url
                     'return_url' => '@homeUrl/payment/paypal/standard/review',
@@ -68,14 +68,14 @@ return [
                     // 下面是沙盒地址，线上地址为：https://api-3t.paypal.com/nvp，
                     // 这个url的作用用于 Yii::$service->payment->paypal->PPHttpPost5 ，发起一些api请求
                     // 譬如获取token，获取paypal存储的address（购物车快捷支付），发起扣款请求
-                    //'nvp_url'  => 'https://api-3t.sandbox.paypal.com/nvp',
+                    'nvp_url'  => 'https://api-3t.sandbox.paypal.com/nvp',
                     // 下面是沙盒地址，线上地址为：https://www.paypal.com/cgi-bin/webscr
                     // 获取token后，通过这个url跳转到paypal的url地址，另外paypal的IPN消息的合法性认证，也是使用的这个url
                     // 也就是  Yii::$service->payment->paypal->getVerifyUrl()
-                    //'webscr_url'  => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
-                    //'account'  => 'zqy234api1-facilitator_api1.126.com',
-                    //'password' => 'HF4TNTTXUD6YQREH',
-                    //'signature'=> 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-ANB-xrkMmTHpTszFaUx2v4EHqknV',
+                    'webscr_url'  => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
+                    'account'  => 'zqy234api1-facilitator_api1.126.com',
+                    'password' => 'HF4TNTTXUD6YQREH',
+                    'signature'=> 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-ANB-xrkMmTHpTszFaUx2v4EHqknV',
                     'label'=> 'PayPal Express Payments',
                     // 跳转到paypal确认后，跳转到fecshop的url
                     'return_url' => '@homeUrl/payment/paypal/express/review',
