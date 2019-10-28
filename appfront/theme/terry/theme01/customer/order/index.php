@@ -46,10 +46,10 @@
 										<a href="<?=  Yii::$service->url->getUrl('customer/order/view',['order_id' => $order['order_id']]);?>">
 											<?= Yii::$service->page->translate->__('View Order');?>
 										</a>
-										<span class="separator">|</span> 
+										<!-- <span class="separator">|</span> 
 										<a class="link-reorder" href="<?=  Yii::$service->url->getUrl('customer/order/confim',['order_id' => $order['order_id']]);?>">
 											确认收货
-										</a>
+										</a> -->
 										<span class="separator">|</span> 
 										<a class="link-reorder" href="<?=  Yii::$service->url->getUrl('customer/order/reorder',['order_id' => $order['order_id']]);?>">
 											<?= Yii::$service->page->translate->__('Reorder');?>
