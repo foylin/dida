@@ -106,28 +106,28 @@ return [
                  */
                 'behindCustomMenu' => [
                     [
-                        'name'        => 'custom menu',            // 菜单名字
-                        'urlPath'     => '/my-custom-menu.html',    // 菜单对应的url
-                        'childMenu'   => [                        // 子菜单
-                            [
-                                'name'        => 'my custom menu 2',
-                                'urlPath'     => '/my-custom-menu-2.html',
-                            ],
-                            [
-                                'name'        => 'my custom menu 3',
-                                'urlPath'     => '/my-custom-menu-2.html',
-                                'childMenu'   => [
-                                    [
-                                        'name'        => 'my custom menu 3',
-                                        'urlPath'     => '/my-custom-menu-2.html',
-                                    ],
-                                    [
-                                        'name'        => 'my custom menu 3',
-                                        'urlPath'     => '/my-custom-menu-2.html',
-                                    ],
-                                ],
-                            ],
-                        ],
+                        // 'name'        => 'custom menu',            // 菜单名字
+                        // 'urlPath'     => '/my-custom-menu.html',    // 菜单对应的url
+                        // 'childMenu'   => [                        // 子菜单
+                        //     [
+                        //         'name'        => 'my custom menu 2',
+                        //         'urlPath'     => '/my-custom-menu-2.html',
+                        //     ],
+                        //     [
+                        //         'name'        => 'my custom menu 3',
+                        //         'urlPath'     => '/my-custom-menu-2.html',
+                        //         'childMenu'   => [
+                        //             [
+                        //                 'name'        => 'my custom menu 3',
+                        //                 'urlPath'     => '/my-custom-menu-2.html',
+                        //             ],
+                        //             [
+                        //                 'name'        => 'my custom menu 3',
+                        //                 'urlPath'     => '/my-custom-menu-2.html',
+                        //             ],
+                        //         ],
+                        //     ],
+                        // ],
                     ],
                 ],
             ],
