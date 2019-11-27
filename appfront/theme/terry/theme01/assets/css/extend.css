@@ -74,5 +74,8 @@
 .share-main p span{
     color: #ff6600;
     font-size: 16px;
-
+}
+.chose_size a{
+    width: auto;
+    padding: 0 10px;    
 }
